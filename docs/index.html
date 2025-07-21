@@ -85,8 +85,8 @@
       background: #eaeff5;
     }
       /* Added for logo & social icons */
-    .topbar{display:flex;align-items:center;justify-content:space-between;background:var(--primary);color:#fff;padding:0.75rem 1rem;flex-wrap:wrap}
-    .logo{display:flex;align-items:center;gap:1rem;min-width:240px}
+    .topbar{display:flex;align-items:center;justify-content:center;text-align:center;background:var(--primary);color:#fff;padding:0.75rem 1rem;flex-wrap:wrap}
+    .logo{display:flex;flex-direction:column;align-items:center;gap:0.5rem}
     .logo img{width:48px;height:48px;border-radius:50%;object-fit:cover}
     .title-tag h1{font-size:1.25rem;margin-bottom:0.25rem;color:#fff}
     .title-tag p{color:#fff;font-size:0.875rem}
@@ -99,7 +99,7 @@
 <body>
   <header class="topbar">
     <div class="logo">
-      <img src="https://raw.githubusercontent.com/carlw0194/manage-any-hotel/main/headshot_with_bakgnd.jpg" alt="Carlton Njong headshot" />
+      <img src="assets/headshot_with_bakgnd.jpg" alt="Carlton Njong headshot" style="width:80px;height:80px;border-radius:50%;object-fit:cover;" />
       <div class="title-tag">
         <h1>Manage Any Hotel – Power BI Dashboard</h1>
         <p>Actionable insights to optimise hotel operations and profitability</p>
@@ -159,11 +159,11 @@
     <section>
       <h2>Screenshots</h2>
       <div class="screenshots">
-        <a href="https://raw.githubusercontent.com/carlw0194/manage-any-hotel/main/screenshots/overview%20final%20version.PNG" target="_blank" rel="noopener">
-          <img src="https://raw.githubusercontent.com/carlw0194/manage-any-hotel/main/screenshots/overview%20final%20version.PNG" alt="Overview page screenshot" />
+        <a href="assets/overview%20final%20version.PNG" target="_blank" rel="noopener">
+          <img src="assets/overview%20final%20version.PNG" alt="Overview page screenshot" />
         </a>
-        <a href="https://raw.githubusercontent.com/carlw0194/manage-any-hotel/main/screenshots/analysis%20final%20version.PNG" target="_blank" rel="noopener">
-          <img src="https://raw.githubusercontent.com/carlw0194/manage-any-hotel/main/screenshots/analysis%20final%20version.PNG" alt="Analysis page screenshot" />
+        <a href="assets/analysis%20final%20version.PNG" target="_blank" rel="noopener">
+          <img src="assets/analysis%20final%20version.PNG" alt="Analysis page screenshot" />
         </a>
       </div>
     </section>
@@ -171,18 +171,23 @@
     <!-- Download & Links -->
     <section>
       <h2>Download the Report</h2>
-      <a class="download-btn" href="https://raw.githubusercontent.com/carlw0194/manage-any-hotel/main/manage_any_hotel.pbix" download>Download PBIX (11&nbsp;MB)</a>
+      <a class="download-btn" href="assets/manage_any_hotel.pbix" download>Download PBIX (11&nbsp;MB)</a>
       <p style="margin-top:0.75rem;">Source code available on <a href="https://github.com/carlw0194/manage-any-hotel" target="_blank" rel="noopener">GitHub</a>.</p>
     </section>
 
     <!-- Insights & Recommendations -->
     <section>
       <h2>Insights &amp; Recommendations</h2>
-      <ul style="line-height:1.8;margin-left:1rem;">
-        <li>Weekend leisure stays drive higher ADR—focus marketing on weekend packages.</li>
-        <li>OTA channels bring volume but double the cancellation rate—consider stricter policies or incentives for direct bookings.</li>
-        <li>Room-upgrades are common for families; promote upsell bundles to capture incremental revenue.</li>
-      </ul>
+      <table style="width:100%;border-collapse:collapse;margin-top:0.5rem;">
+        <thead style="background:#eaeff5;">
+          <tr><th>#</th><th>Insight</th><th>Recommendation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:center">1</td><td>Portugal tops revenue: $11 M, ADR $140.</td><td>Increase paid-search budget &amp; launch “remote-work” package.</td></tr>
+          <tr><td style="text-align:center">2</td><td>Resort Hotel cancellations 37 %.</td><td>Tighten deposit terms; 5 % discount for non-refundable 14-day bookings.</td></tr>
+          <tr><td style="text-align:center">3</td><td>GDS channel ADR $156 but 8 % share.</td><td>Negotiate rate-parity; add loyalty perks for GDS.</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <!-- Tech Stack -->
