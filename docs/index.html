@@ -84,12 +84,31 @@
       font-size: 0.9rem;
       background: #eaeff5;
     }
+      /* Added for logo & social icons */
+    .topbar{display:flex;align-items:center;justify-content:space-between;background:var(--primary);color:#fff;padding:0.75rem 1rem;flex-wrap:wrap}
+    .logo{display:flex;align-items:center;gap:1rem;min-width:240px}
+    .logo img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+    .title-tag h1{font-size:1.25rem;margin-bottom:0.25rem;color:#fff}
+    .title-tag p{color:#fff;font-size:0.875rem}
+    .social a{color:#fff;margin-left:0.75rem;font-size:1.5rem;transition:opacity .2s}
+    .social a:hover{opacity:0.8}
   </style>
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/6c4d9ef123.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
-    <h1>Manage Any Hotel – Power BI Dashboard</h1>
-    <p>Actionable insights to optimise hotel operations and profitability</p>
+  <header class="topbar">
+    <div class="logo">
+      <img src="../headshot_with_bakgnd.jpg" alt="Carlton Njong headshot" />
+      <div class="title-tag">
+        <h1>Manage Any Hotel – Power BI Dashboard</h1>
+        <p>Actionable insights to optimise hotel operations and profitability</p>
+      </div>
+    </div>
+    <div class="social">
+      <a href="https://github.com/carlw0194" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/carlton-njong/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
   </header>
   <main>
     <section>
@@ -100,6 +119,13 @@
       <p>
         Explore the screenshots below or download the PBIX file to interact with the report yourself.
       </p>
+    </section>
+
+    <!-- Real-World Problem & Analytic Solution -->
+    <section>
+      <h2 style="margin-top:2rem;">Real-World Problem &amp; Analytic Solution</h2>
+      <p><strong>Problem:</strong> Independent hotels often struggle to maximise revenue while minimising cancellations across many booking channels.</p>
+      <p><strong>Analytic Solution:</strong> This dashboard pin-points leakage in ADR, lead-time and channel mix, letting managers swiftly re-price inventory and target valuable guest segments.</p>
     </section>
 
     <!-- Live Dashboard Embed -->
@@ -117,6 +143,16 @@
         <li>Slice by hotel type, market segment, channel, room class and more.</li>
         <li>Identify high-value segments and minimise revenue leakage.</li>
       </ul>
+    </section>
+
+    <!-- Walk-through -->
+    <section>
+      <h2>Walk-through</h2>
+      <ol style="line-height:1.8;margin-left:1rem;">
+        <li><strong>Overview page:</strong> spot KPI outliers, YoY trends &amp; cancellations at a glance.</li>
+        <li><strong>Analysis page:</strong> dig into segments via metric selector, channel mix and country table.</li>
+        <li>Filter with slicers (Hotel Type, Year, Segment, Channel) and reset anytime.</li>
+      </ol>
     </section>
 
     <!-- Screenshot Gallery -->
@@ -148,6 +184,16 @@
         <li>GitHub Pages – static site hosting for this project page</li>
         <li>FlagCDN – ISO-country flag icons</li>
       </ul>
+    </section>
+      <!-- Contact -->
+    <section>
+      <h2>Contact</h2>
+      <p>Created by Carlton Njong. Reach out:</p>
+      <p>
+        <a href="mailto:carlw0194@gmail.com">Email</a> ·
+        <a href="https://github.com/carlw0194" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a> ·
+        <a href="https://www.linkedin.com/in/carlton-njong/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </p>
     </section>
   </main>
   <footer>
