@@ -128,6 +128,29 @@
       <p><strong>Analytic Solution:</strong> This dashboard pin-points leakage in ADR, lead-time and channel mix, letting managers swiftly re-price inventory and target valuable guest segments.</p>
     </section>
 
+    <!-- Understanding the Metrics -->
+    <section>
+      <h2>🧮 Understanding the Metrics</h2>
+      <p>The dashboard tracks key hotel KPIs. Use this cheat-sheet as you explore the report:</p>
+      <table style="width:100%;border-collapse:collapse;margin-top:0.5rem;">
+        <thead style="background:#eaeff5;">
+          <tr><th>Metric</th><th>Definition &amp; Purpose</th><th>DAX Formula</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Total Bookings</strong></td><td># reservations (live + cancelled); baseline volume driver</td><td><code>COUNTROWS( hotel_booking )</code></td></tr>
+          <tr><td><strong>Bookings Cancelled</strong></td><td># reservations flagged <code>is_canceled = 1</code>; gauges churn</td><td><code>CALCULATE( [Total Bookings], hotel_booking[is_canceled] = 1 )</code></td></tr>
+          <tr><td><strong>Booking Cancellation %</strong></td><td>Share of bookings lost; indicator of revenue leakage</td><td><code>DIVIDE( [Bookings Cancelled], [Total Bookings] )</code></td></tr>
+          <tr><td><strong>Average Daily Rate (ADR)</strong></td><td>Avg price / night booked; pricing power proxy</td><td><code>AVERAGE( hotel_booking[adr] )</code></td></tr>
+          <tr><td><strong>Average Lead Time (days)</strong></td><td>Avg days between booking &amp; arrival; demand planning metric</td><td><code>AVERAGE( hotel_booking[lead_time] )</code></td></tr>
+          <tr><td><strong>Nights</strong></td><td>Row-level length of stay (weekend + weekday)</td><td><code>hotel_booking[stays_in_weekend_nights] + hotel_booking[stays_in_week_nights]</code> <em>(column)</em></td></tr>
+          <tr><td><strong>Revenue Per Booking</strong></td><td>Potential revenue per reservation (ADR × Nights)</td><td><code>SUMX( hotel_booking, hotel_booking[adr] * [Nights] )</code></td></tr>
+          <tr><td><strong>Total Revenue</strong></td><td>Realised revenue (non-cancelled)</td><td><code>CALCULATE( [Revenue Per Booking], hotel_booking[is_canceled] = 0 )</code></td></tr>
+          <tr><td><strong>Revenue Loss</strong></td><td>Lost revenue due to cancellations</td><td><code>CALCULATE( [Revenue Per Booking], hotel_booking[is_canceled] = 1 )</code></td></tr>
+          <tr><td><strong>YoY % Metrics</strong></td><td>Year-on-year growth signals (Bookings, Revenue, ADR …)</td><td><code>DIVIDE( [Metric] - [Metric PY], [Metric PY] )</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
     <!-- Live Dashboard Embed -->
     <section>
       <h2>Explore the Live Dashboard</h2>
@@ -153,6 +176,34 @@
         <li><strong>Analysis page:</strong> dig into segments via metric selector, channel mix and country table.</li>
         <li>Filter with slicers (Hotel Type, Year, Segment, Channel) and reset anytime.</li>
       </ol>
+    </section>
+
+    <!-- Visual Catalogue & Rationale -->
+    <section>
+      <h2>📊 Visual Catalogue &amp; Rationale</h2>
+      <table style="width:100%;border-collapse:collapse;margin-top:0.5rem;">
+        <thead style="background:#eaeff5;">
+          <tr><th>Page • Visual</th><th>Chart Type</th><th>Why this chart?</th><th>Key Insight</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Overview • KPI strip</td><td>Card ×6</td><td>Instant pulse on key numbers + YoY arrows</td><td>Bookings ↑51 %, but Revenue Loss ↑7 % → margin risk</td></tr>
+          <tr><td>Overview • Monthly Booking Trend</td><td>Combo (column + line)</td><td>Trend + targets in one; shows seasonality</td><td>Peak Aug–Sep, off-season Dec–Jan → promo window</td></tr>
+          <tr><td>Overview • Cancellation Rate</td><td>Donut KPI</td><td>Gauge at-a-glance vs 0–100 %</td><td>37 % cancel rate is red-zone</td></tr>
+          <tr><td>Overview • ADR by Country</td><td>Bubble scatter</td><td>Volume (x) vs Price (y) vs Revenue (size)</td><td>Portugal high price &amp; volume; outlier market</td></tr>
+          <tr><td>Overview • ADR by Lead Time</td><td>Bar</td><td>Easy ranking buckets</td><td>Longer lead = higher ADR; price advance bookings higher</td></tr>
+          <tr><td>Overview • Rev vs Rev Loss by Month</td><td>Stacked column</td><td>Compare good vs lost dollars monthly</td><td>Sep top loss despite high revenue</td></tr>
+          <tr><td>Overview • Top Markets Table</td><td>Table + data bars</td><td>Flags + dual metrics side-by-side</td><td>Top 5 countries bring 70 % revenue</td></tr>
+          <tr><td>Overview • Bookings Cancelled by Weekday</td><td>Column</td><td>Day-of-week pattern</td><td>Sunday spikes ⇒ revise weekend policy</td></tr>
+          <tr><td>Overview • ADR & Cancellation %</td><td>Line + column</td><td>Relate price to cancel behaviour</td><td>ADR ↑ above $140 drives cancellations ↑</td></tr>
+          <tr><td>Analysis • Metric Selector</td><td>Button slicer</td><td>User chooses KPI</td><td>Tailors every chart to GM’s question</td></tr>
+          <tr><td>Analysis • Revenue by Customer Type</td><td>Donut</td><td>Proportions fit 4 categories</td><td>Transient 74 % revenue; upsell others</td></tr>
+          <tr><td>Analysis • Rev by Channel</td><td>Donut</td><td>Quick share, small categories</td><td>GDS small volume but 16 % revenue (ADR)</td></tr>
+          <tr><td>Analysis • Rev by Nights Spent</td><td>Histogram</td><td>LOS distribution</td><td>Short stays &lt;4 nights dominate revenue loss</td></tr>
+          <tr><td>Analysis • Rev by Market Segment</td><td>Horizontal bar</td><td>Ranked list</td><td>Online TA twice offline; direct minor</td></tr>
+          <tr><td>Analysis • Top 15 Countries</td><td>Flag table</td><td>Rich tabular with icons</td><td>Portugal, UK, FR = 60 % of total</td></tr>
+          <tr><td>Analysis • Rev by Room Type</td><td>Tornado</td><td>Visualises upgrade leakage</td><td>Type A over-assigned: 55 % free upgrades</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <!-- Screenshot Gallery -->
